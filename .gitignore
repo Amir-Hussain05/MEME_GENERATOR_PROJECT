@@ -1,0 +1,18 @@
+# Secrets — NEVER commit these
+.env
+
+# Generated outputs
+outputs/
+
+# Uploaded user images
+uploads/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
