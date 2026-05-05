@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 from meme_engine import create_meme
-from template_selector import get_template
 
 st.set_page_config(
     page_title="MemeGPT",
@@ -36,7 +35,7 @@ with st.sidebar:
     5. ⬇️ Download your meme!
     """)
     st.markdown("---")
-    st.caption("Developed by Amir and Tarique 🤖")
+    st.caption("Developed by Amir & Tarique 🤖")
 
 st.title("😂 MemeGPT")
 st.markdown("Generate hilarious memes using AI captions and images!")
@@ -49,7 +48,7 @@ scenario = st.text_area(
 
 option = st.radio(
     "🖼️ Choose image source",
-    ["Template", "Upload", "AI Generate"],
+    ["Upload", "AI Generate"],
     horizontal=True
 )
 
@@ -86,10 +85,7 @@ if st.button("🚀 Generate Meme", use_container_width=True, type="primary"):
                 with col3:
                     st.info(f"**Bottom:** {bottom}")
 
-                if option == "Template":
-                    image_path = get_template(category)
-
-                elif option == "Upload":
+                if option == "Upload":
                     if uploaded_file:
                         os.makedirs("uploads", exist_ok=True)
                         image_path = os.path.join("uploads", uploaded_file.name)
