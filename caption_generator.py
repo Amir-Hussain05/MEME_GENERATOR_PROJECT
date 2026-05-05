@@ -19,7 +19,8 @@ def generate_caption(scenario: str, api_key: str):
                         "Always respond STRICTLY in this format and nothing else:\n"
                         "line1 | line2 | category\n\n"
                         "Valid categories: coding, study, office, cricket, general\n"
-                        "Keep each line under 60 characters."
+                        "Keep each line under 60 characters. "
+                        "Use only simple English characters, no special symbols or dashes."
                     )
                 },
                 {
@@ -33,6 +34,10 @@ def generate_caption(scenario: str, api_key: str):
 
         text = response.choices[0].message.content.strip()
         text = text.replace("```", "").strip()
+
+        # ✅ Fix: remove special characters that cause encoding errors
+        text = text.encode("ascii", errors="ignore").decode("ascii")
+
         parts = [p.strip() for p in text.split("|")]
 
         if len(parts) >= 3:
